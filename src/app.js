@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use('/api/products',productRouter);
 
-app.use('api/carts',cartsRouter);
+app.use('/api/carts',cartsRouter);
 
 app.listen(8080, ()=>console.log("El servidor abrio correctamente"));
 
