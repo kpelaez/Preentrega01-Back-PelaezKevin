@@ -2,9 +2,9 @@ import fs from 'fs'
 
 class CartManager{
     constructor(path){
-        this.ultimoCarritoId = this.obtenerUltimoId();
-        this.path = path;
         this.carritos = this.cargarArchivo();
+        this.ultimoCarritoId = this.obtenerUltimoId();
+        this.path = path;     
     }
 
     //Cargar datos del archivo 
@@ -16,8 +16,8 @@ class CartManager{
 
         } catch (error) {
 
-            console.log("Se carga archivo vacio");
-            return [];
+          console.log("Se carga archivo vacio");
+          return [];
         }
     }
 
@@ -29,8 +29,19 @@ class CartManager{
     }
     
     obtenerUltimoId() {
-        //Genero un array con los Id y devuelvo solo el mas alto o 0 si no hay valores en carritos
-        return Math.max(...this.carritos.map(cart => cart.id), 0) + 1;
+      //Genero un array con los Id y devuelvo solo el mas alto o 1 si no hay valores en carritos
+      let maxId = 0;
+      
+      if(this.carritos.lenght  && this.carritos){
+        return 1;
+      }
+      
+      for (const cart of this.carritos){
+        if(cart.id > maxId){
+          maxId = cart.id;
+        }  
+      }
+      return maxId + 1;
     }
 
     crearCarrito() {
