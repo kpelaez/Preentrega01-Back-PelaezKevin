@@ -2,7 +2,7 @@ import express from 'express';
 import CartManager from '../CartManager.js';
 
 const router = express.Router();
-const CM = new CartManager('K:/CODERHOUSE/FULLSTACK/BackEnd/Preentrega01-Back-PelaezKevin/src/carts.json');
+const CM = new CartManager('../carts.json');
 
 router.post('/', (req,res)=>{
     const newCart = CM.crearCarrito();
