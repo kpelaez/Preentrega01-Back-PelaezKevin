@@ -1,0 +1,22 @@
+{{!-- Vista Creada para la entrega de CoderHouse --}}
+<div>
+    <h2>Listado de productos en tiempo real</h2>
+
+    {{!-- Iteramos todos los productos existentes--}}
+    {{#each products}}
+        <div class="products-list">
+            <ul>
+                <li>Producto: {{this.title}}</li>
+                <li>Descripcion: {{this.description}}</li>
+                <li>Precio: ${{this.price}}</li>
+                <li>Cant stock: {{this.stock}}</li>
+            </ul>
+        </div>
+        <hr>
+    {{/each}}
+</div>
+
+
+{{!-- Manera de importar socket en la vista, asi establecemos una mejor comunicacion --}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/src/public/js/realTimeProducts.js"></script>

@@ -1,0 +1,16 @@
+<div>
+    <h2>Pagina de Listado de Productos Todos</h2>
+
+    {{!-- Iteramos todos los productos --}}
+    {{#each products}}
+        <div class="products-list">
+            <ul>
+                <li>Producto: {{this.title}}</li>
+                <li>Descripcion: {{this.description}}</li>
+                <li>Precio: ${{this.price}}</li>
+                <li>Cant stock: {{this.stock}}</li>
+            </ul>
+        </div>
+        <hr>
+    {{/each}}
+</div>

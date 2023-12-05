@@ -1,6 +1,8 @@
 import fs from 'fs';
 // const fs = require('fs');
 
+const socket = io();
+
 class ProductManager{
     constructor(path){
         this.products = [];
@@ -45,8 +47,14 @@ class ProductManager{
                 //Se guarda el producto
                 this.guardarArchivo();
                 console.log("Se ingreso ok");
+
+                //Envio por socket el evento
+                socket.emit('product-added',product);
+
                 return product.id;
             }
+
+
         }else{
             console.log("Faltaron parametros para crear el producto")
         }
@@ -84,6 +92,10 @@ class ProductManager{
           this.products[index] = { ...this.products[index], ...nuevosValores };
           this.guardarArchivo(); 
           console.log("Producto actualizado correctamente.");
+
+          //Envio por socket el evento
+          socket.emit('product-updated',{id, nuevosValores});
+
           return 1;
         } else {
           console.log("Producto no encontrado");
@@ -102,6 +114,10 @@ class ProductManager{
           this.products.splice(index, 1);
           this.guardarArchivo(); // Guardar después de borrar
           console.log("Producto eliminado correctamente.");
+
+          //Envio por socket el evento
+          socket.emit('product-deleted',id);
+
           return 1;
         } else {
           console.log("Producto no encontrado");
